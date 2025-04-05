@@ -3,18 +3,18 @@ CREATE TABLE roles (
     rol VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE telefonos (
-    id SERIAL PRIMARY KEY, 
-    usuario_id INT NOT NULL,
-    telefono VARCHAR (255),
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
-);
-
 CREATE TABLE usuarios (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     contraseña VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE telefonos (
+    id SERIAL PRIMARY KEY, 
+    usuario_id INT NOT NULL,
+    telefono VARCHAR (255),
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 );
 
 CREATE TABLE permisos (
