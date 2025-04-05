@@ -1,20 +1,6 @@
-# Usa una imagen oficial de Node.js como base
-FROM node:20
+# Usa una imagen oficial de PostgreSQL como base
+FROM postgres:15
 
-# Establece el directorio de trabajo en el contenedor
-WORKDIR /app
+# Copia los archivos necesarios para la base de datos
+COPY ./sql/ddl.sql /docker-entrypoint-initdb.d/
 
-# Copia los archivos del package.json y package-lock.json
-COPY package*.json ./
-
-# Instala las dependencias del proyecto
-RUN npm install
-
-# Copia el resto del código de la aplicación
-COPY . .
-
-# Expone el puerto en el que correrá la app
-EXPOSE 3000
-
-# Comando por defecto para correr la app
-CMD ["npm", "run", "dev"]
